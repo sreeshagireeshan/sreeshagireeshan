@@ -1,0 +1,43 @@
+<html>
+	<body>
+		<form method="post" action="{% url 'movecheckbox' %}">
+			{% csrf_token %}
+			<table>
+			<tr>
+			<th>date</th>
+			<th>time</th>
+			<th>senderid</th>
+			<th>subject</th>
+			<th>message</th>
+			</tr>
+
+			{% for v in view %}
+			<tr>
+			
+			<td>{{v.date}}</td>
+			<td>{{v.time}}</td>
+			<td>{{v.senderid.username}}</td>
+			<td>{{v.subject}}</td>
+			<td>{{v.message}}</td>
+			<td><input type="checkbox" name="checkbox" value="{{v.id}}"></td>	
+			<td><a href="{% url 'forward' v.id %}">forward</a></td>
+			<td><a href="{% url 'reply' v.id %}">reply</a></td>
+			
+			</tr>
+			
+			{% endfor %}
+			
+			
+
+			</table>
+			<input type="submit" value="move to trash">
+		</form>
+	</body>
+{% if messages %}
+	{% for msg in messages %}
+	<script>
+		alert('{{msg}}')
+	</script>
+	{% endfor %}
+{% endif %}
+</html>

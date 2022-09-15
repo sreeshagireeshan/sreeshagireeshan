@@ -1,0 +1,126 @@
+<html>
+	<script src="/static/jquery-1.8.3.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#country").change(function(){
+			var cid=$("#country").val();
+			$.ajax({
+				url:"{% url 'getstate' %}",
+				data:{'country_id':cid},
+				success:function(data){
+					$("#state").html(data);
+				}
+
+			     })
+
+   			})
+			
+		})
+
+	</script>
+
+
+		<body>
+		<form method="post" action="{% url 'registerAction' %}">
+			{% csrf_token %}
+			<table>
+				<tr>
+				<td>name</td>
+				<td><input type="text" name="name"></td>
+				</tr>
+				
+				<tr>
+				<td>gender</td>
+				<td><input type="radio" name="gender" value="male">male
+				<input type="radio" name="gender" value="female">female</td>
+				</tr>
+				
+				<tr>
+				<td>dob</td>
+				<td><input type="date" name="dob"></td>
+				</tr>
+
+				<tr>
+				<td>address</td>
+				<td><textarea name="address" rows="4" cols="4"></textarea></td>
+				</tr>
+				
+				<tr>
+				<td>phone</td>
+				<td><input type="text" name="phone"></td>
+				</tr>
+
+
+
+				<tr>
+				<td>Country</td>
+				<td>
+				<select name="country"  id="country">
+				<option value=" ">--select--</option>
+				{% for c in countries %}
+					<option value="{{c.id}}">{{c.countryname}}</option>
+				{% endfor %}
+				</select>
+				</td>
+				
+			</tr>
+			<tr>
+				<td>state</td>
+				<td>
+					<select name="state"  id="state">
+					<option value="">--select--</option>
+				</td>
+			</tr>
+				
+
+				<tr>
+				<td>security questions</td>
+				<td><select name="security">
+				<option value="">--select--</option>
+				<option value="what is your username?">what is your username?</option>
+				<option value="is password correct?">is password correct?</option>
+				<option value="is password strong?">is password strong?</option>
+				</select>
+				</td>
+				</tr>
+
+
+				<tr>
+				<td>answer</td>
+				<td><input type="text" name="answer"></td>
+				</tr>
+			
+				<tr>
+				<td>hobby</td>
+				{% for h in hobby %}
+				<td><input type="checkbox" name="hobby" value="{{h.id}}" >{{h.hobbyname}}</td>
+				{% endfor %}
+				</tr>
+				
+				<tr>
+				<td>username</td>
+				<td><input type="text" name="username">@mymail.com</td>
+				</tr>
+
+				<tr>
+				<td>password</td>
+				<td><input type="password" name="password"><td>
+				</tr>
+				<tr>
+				<td></td>
+				<td><input type="submit" value="register"></td>
+				</tr>
+
+
+			</table>
+			
+		</form>
+	</body>
+{% if messages %}
+	{% for msg in messages %}
+	<script>
+		alert('{{msg}}')
+	</script>
+	{% endfor %}
+{% endif %}
+</html>

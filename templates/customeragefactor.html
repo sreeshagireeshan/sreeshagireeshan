@@ -1,0 +1,36 @@
+<html>
+	<body>
+
+		<form method="post" action="{% url 'customeragefactorAction' %}">
+			{% csrf_token %}
+		<table>
+		<tr>
+		<td>Factors</td>
+		</tr>
+
+		<tr>
+				
+		<td><select name="factor" id="factor">
+		<option value="">---select---</option>
+		{% for v in agefactor %}
+		<option value="{{v.id}}">{{v.factorname}}</option>
+		{% endfor %}			
+		</select>
+		</td>
+		</tr>
+		
+		<tr>
+		<td></td>
+		<td><input type="submit" value="add"></td>
+		</tr>
+			
+	</form>
+</body>
+{% if messages %}
+	{% for msg in messages%}
+		<script>
+			alert('{{msg}}')
+		</script>
+	{% endfor %}
+{% endif %}
+<html>

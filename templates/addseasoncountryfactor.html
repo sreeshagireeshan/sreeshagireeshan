@@ -1,0 +1,117 @@
+<html>
+<script src="/static/jquery-1.8.3.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#season").change(function(){
+			var sid=$("#season").val();
+		$.ajax({
+			url:"{% url 'getfactorname' %}",
+			data:{'seasonid':sid},
+			success:function(data){
+				$("#factorname").html(data)
+				}
+
+				})
+				})
+				})
+
+	$(document).ready(function(){
+				$("#country").change(function(){
+						var cid=$("#country").val();
+				$.ajax({
+					url:"{% url 'getstatename' %}",
+					data:{'countryid':cid},
+					success:function(data){
+					
+						$("#state").html(data)
+						}	
+
+
+					})
+					})
+					})
+ 
+</script>
+
+
+	<body>
+		<form method="post" action="{% url 'seasoncountryfactorAction'%}">
+				{% csrf_token %}
+			<table>
+				<tr>
+				<td>season</td>
+				<td>
+				<select name="season" id="season">
+				<option value="">--select--</option>
+				{% for s in season %}
+				<option value="{{s.id}}">{{s.seasonname}}</option>
+				{% endfor %}
+				</td>
+				</tr>
+				<tr>
+				<td>factorname</td>
+				<td>
+					<select name="factor"  id="factorname">
+					<option value="">--select--</option>
+				</td>
+				</tr>
+
+				<tr>
+				<td>country</td>
+				<td>
+				<select name="country" id="country">
+				<option value="">--select--</option>
+				{% for c in country %}
+				<option value="{{c.id}}">{{c.countryname}}</option>
+				{% endfor %}
+				</select>
+				</td>
+				</tr>
+
+				<tr>
+				<td>state</td>
+				<td>
+					<select name="state"  id="state">
+					<option value="">--select--</option>
+				</td>
+				</tr>
+				<tr>
+				<td>months</td>
+				<td>
+				<select name="months">
+				<option value="">--select--</option>
+				<option value="1">january</option>
+				<option value="2">february</option>
+				<option value="3">march</option>
+				<option value="4">april</option>
+				<option value="5">may</option>
+				<option value="6">june</option>
+				<option value="7">july</option>
+				<option value="8">august</option>
+				<option value="9">september</option>
+				<option value="10">october</option>
+				<option value="11">november</option>
+				<option value="12">december</option>
+				</select>
+				</td>
+				</tr>
+
+				<tr>
+				<td></td>
+				<td><input type="submit" value="add"></td>
+				</tr>
+				
+
+
+
+			</table>
+		</form>
+	</body>
+{% if messages %}
+	{% for msg in messages%}
+		<script>
+			alert('{{msg}}')
+		</script>
+	{% endfor %}
+{% endif %}
+</html>

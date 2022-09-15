@@ -1,0 +1,28 @@
+<html>
+
+	<body>
+		
+		<table>
+
+			<tr>
+				<th>Sender Name</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Subject</th>
+				<th>Message</th>
+			</tr>
+
+
+
+			{% for v in data %}
+			<tr>
+				<td>{{v.senderid.username}}</td>
+				<td>{{v.date}}</td>
+				<td>{{v.time}}</td>
+				<td>{{v.subject}}</td>
+				<td>{{v.message}}</td>
+				<td><a href="{% url 'deleteSpam' v.id %}">Delete</a></td>
+			</tr>
+			{% endfor %}
+</table>
+</body>

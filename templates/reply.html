@@ -1,0 +1,36 @@
+<html>
+	<body>
+		<form method="post" action="{% url 'replyAction' %}">
+			{% csrf_token %}
+			<table>
+
+
+			{% for v in reply %}
+			<tr>
+			<td>receiver</td>
+			<td><input type="text" name="receiverid" id="username" value="{{v.senderid.username}}"></td>
+			</tr>
+
+			<tr>
+			<td>subject</td>
+			<td><input type="text" name="subject" ></td>
+			</tr>
+			
+			<tr>
+			<td>message</td>
+			<td><textarea name="message" rows="5" cols="20" ></textarea></td>
+			</tr>
+
+			<tr>
+			<td></td>
+			<td><input type="submit" value="reply"></td>
+			</tr>
+
+			{% endfor %}
+
+
+
+			</table>
+		</form>
+	</body>
+</html>

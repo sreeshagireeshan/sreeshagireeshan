@@ -1,0 +1,29 @@
+<html>
+	<body>
+		<table>
+		<tr>
+		<th>date</th>
+		<th>time</th>
+		<th>senderid</th>
+		<th>subject</th>
+		<th>message</th>
+		</tr>
+
+		{% for v in trash %}
+		<tr>
+		<td>{{v.date}}</td>
+		<td>{{v.time}}</td>
+		<td>{{v.messageid.senderid.username}}</td>
+		<td>{{v.messageid.subject}}</td>
+		<td>{{v.messageid.message}}</td>
+		<td><a href="{% url 'deletetrash' v.id %}">Delete</td>
+		</tr>
+		{% endfor %}
+
+
+		</table>
+		
+
+
+	</body>
+</html>

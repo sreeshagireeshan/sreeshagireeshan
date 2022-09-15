@@ -1,0 +1,27 @@
+<html>
+	<body>
+		<table>
+			<tr>
+			<th>date</th>
+			<th>time</th>
+			<th>receivername</th>
+			<th>message</th>
+			<th>subject</th>
+			
+			</tr>
+			{% for v in sent %}
+			<tr>
+			
+			<td>{{v.date}}</td>
+			<td>{{v.time}}</td>
+			<td>{{v.receiverid.username}}</td>
+			<td>{{v.message}}</td>
+			<td>{{v.subject}}</td>
+			<td><a href="{% url 'delete' v.id %}">delete</a></td>
+			</tr>
+			
+			
+			{% endfor %}
+		</table>
+	</body>
+</html>

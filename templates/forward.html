@@ -1,0 +1,58 @@
+<html>
+	<script src="/static/jquery-1.8.3.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	$("#receiver").change(function(){
+	var uid=$("#receiver").val();
+		$.ajax({
+			url:"{% url 'checkusername1' %}",
+			data:{'receiverid':uid},
+			success:function(data){
+				if(data.valid != "exist")
+				{
+					alert("enter a valid receiver");
+					$("#receiver").val();
+				}
+
+				}
+
+				})
+				})
+				})
+
+
+			
+	</script>
+
+
+<body>
+		<form method="post" action="{% url 'forwardAction' %}">
+		{% csrf_token %}
+
+		{% for v in forward %}
+		<table>
+		<tr>
+		<td>receiverid</td>
+		<td><input type="text" name="receiverid" id="username"></td>
+		</tr>
+		
+		<tr>
+		<td>subject</td>
+		<td><input type="text" name="subject" value="{{v.subject}}"></td>
+		</tr>
+		
+		<tr>
+		<td>message</td>
+		<td><textarea name="message" rows="10" cols="20">{{v.message}}</textarea></td>
+		</tr>
+			
+		<tr>
+		<td><input type="submit" value="forward"></td>
+		</tr>
+		
+		</table>
+		{% endfor %}
+		</form>
+	</body>
+
+</html>

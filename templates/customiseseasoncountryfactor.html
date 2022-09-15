@@ -1,0 +1,23 @@
+<html>
+	<body>
+		<form method="post" action="{% url 'customiseseasoncountryfactorAction' %}">
+			{% csrf_token %}
+			<table>
+				<tr>
+					<td>Factors</td>
+					<td><select name="factor" id="factor"/>
+						<option value="">---select---</option>
+							{% for v in data %}
+						<option value="{{v.factorid.id}}">{{v.factorid.factorname}}</option>
+							{% endfor %}
+					    </select>
+					</td>
+					</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="add"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>

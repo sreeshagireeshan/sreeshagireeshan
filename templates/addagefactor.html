@@ -1,0 +1,38 @@
+<html>
+	<body>
+		<form method="post" action="{% url 'addagefactorAction' %}">
+			{% csrf_token %}
+			<table>
+				<tr>
+				<td>Minimum age</td>
+				<td><input type="text" name="minage"></td>
+				</tr>
+				
+				<tr>
+				<td>Maximum age</td>
+				<td><input type="text" name="maxage"></td>
+				</tr>
+				
+				<tr>
+				<td>Factorname</td>
+				<td><input type="text" name="factor"></td>
+				</tr>
+				
+				<tr>
+				<td></td>
+				<td><input type="submit" value="add"></td>
+				</tr>
+				
+
+				
+			</table>
+		</form>
+	</body>
+{% if messages %}
+	{% for msg in messages%}
+		<script>
+			alert('{{msg}}')
+		</script>
+	{% endfor %}
+{% endif %}
+</html>
